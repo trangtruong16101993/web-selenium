@@ -1,0 +1,6 @@
+.idea/
+.venv/
+**.pytest_cache
+
+src/service/_log_/vault/*
+src/_snapshot_/vault/*/
