@@ -9,7 +9,7 @@ verify_ssl = true
 selenium = "==3.11.0"  # required this version to dodge the bug ref. https://github.com/SeleniumHQ/docker-selenium/issues/521#issuecomment-315665029
 pyvirtualdisplay = "==0.2.1" # required Xvfb when running on Ubuntu Server
 
-requests = "==2.18.4" # make web request normally
+requests = "==2.20.0" # make web request normally
 psycopg2-binary = "==2.7.4"
 
 pytest = "==3.5.0"
