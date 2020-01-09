@@ -2,7 +2,6 @@ from random import randint
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 
-from src.service.selenium_.snapshot_debug import *
 from src.service.selenium_.webdriver import *
 from src.service.selenium_.window_size import *
 from src.config import WEBDRIVER_REMOTE_HUB
@@ -53,5 +52,4 @@ def like_post():
 
 login_fb()
 like_post()
-takeSnapshot(wd, printOutcome=True, suffix='snap0', forceSnapshot=True)
 
