@@ -1,10 +1,8 @@
 from time import sleep
-from selenium import webdriver
 import random
-from src.scenario.generate_nric import generate
+from src.scenario.venta.generate_nric import generate
 
-from selenium.webdriver.common.action_chains import ActionChains
-
+from selenium import webdriver
 from src.service.selenium_.webdriver import *
 from src.service.selenium_.window_size import *
 from src.config import WEBDRIVER_REMOTE_HUB
@@ -12,8 +10,10 @@ from src.config import WEBDRIVER_REMOTE_HUB
 letters = ["a", "b", "c", "d","e", "f", "g", "h", "i", "j", "k", "l","1","2","3","4","5","6"]
 email_value = ''
 policy_start_date = ''
+total_amount = ''
 driver  = loadWebDriver(WEBDRIVER_REMOTE_HUB, WindowSize.PC)
 url = 'https://release.gigacover.com/flip'
+
 
 #region plan
 basic = '/html/body/div[1]/main/div[2]/section[1]/div/div[1]/div[1]/div/div[2]/button/span'
@@ -71,6 +71,7 @@ def submit():
     proceed_btn.click()
 
 def input_infomation():
+    global total_amount
     get_one_random_email(letters)
     first_name = driver.find_element_by_name('first_name')
     first_name.send_keys('trang')
@@ -90,6 +91,8 @@ def input_infomation():
     required_checkbox.click()
     checkout_btn = driver.find_element_by_id('headless-proceed-checkout-button')
     checkout_btn.click()
+    sleep(5)
+    total_amount = driver.find_element_by_xpath('/html/body/div[1]/main/div[2]/section/div/div/div/div/div[5]/div[2]/div[3]/div[2]/font/u').text
 
 def checkout():
     proceed_btn = driver.find_element_by_id('headless-proceed-payment-button')
@@ -109,17 +112,17 @@ def checkout():
     pay_btn = driver.find_element_by_xpath('//*[@id="container"]/section/span[2]/div/div/main/form/nav/div/div/div/button')
     pay_btn.click()
     sleep(10)
-    mes = driver.find_element_by_xpath('/html/body/div[1]/main/div[2]/section/div/div/div/h2')
-    success_msg = mes.text
-    driver.save_screenshot("screenshot.png")
-    return success_msg
 
-def buy(a, b):
-    plan(a)
-    unit(b)
+def buy():
+    plan(basic)
+    unit(weekly)
     submit()
     input_infomation()
     checkout()
-    # driver.quit()
+    driver.quit()
 
-buy(basic, weekly)
+
+if __name__ == "__main__":
+    buy()
+
+buy()
