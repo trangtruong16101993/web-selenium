@@ -17,7 +17,6 @@ class Test(unittest.TestCase):
 
     def tearDown(self): pass  # nothing here for now
 
-
     def test_apkathon2019_homepage(self):
         url = 'https://release.gigacover.com/flip'
         self.wd.get(url)
