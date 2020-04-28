@@ -5,7 +5,7 @@ seleniumContainers="docker ps -qa
                               -f name=firefox
                               -f name=opera
 "
-sh="docker rm -f \$($seleniumContainers)"
+sh="docker stop $($seleniumContainers)"
 echo "$sh"
 eval $sh
 
