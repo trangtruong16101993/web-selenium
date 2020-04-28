@@ -1,3 +1,4 @@
 [
-  "test_00.py::Test::test_apkathon2019_homepage"
+  "test_00.py::Test::test_apkathon2019_homepage",
+  "test_00.py::Test::test_legend"
 ]

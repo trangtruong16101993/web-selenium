@@ -4,8 +4,9 @@
 s=${BASH_SOURCE} ; s=$(dirname "$s") ; s=$(cd "$s" && pwd) ; SCRIPT_HOME="$s"
 
 docker-compose -f "$SCRIPT_HOME/docker-compose.yml" \
-               -p 'zang'  up \
+               -p 'selenium'  up \
                -d \
                --force-recreate --remove-orphans \
-               --scale selenium-node-ch=1 \
-               --scale selenium-node-ff=0
+               --scale chrome=1 \
+               --scale opera=1 \
+               --scale firefox=1

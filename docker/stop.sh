@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 seleniumContainers="docker ps -qa
-                              -f name=selenium-hub
-                              -f name=selenium-node-ch
-                              -f name=selenium-node-ff
+                              -f name=chrome
+                              -f name=firefox
+                              -f name=opera
 "
 sh="docker rm -f \$($seleniumContainers)"
 echo "$sh"
