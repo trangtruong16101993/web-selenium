@@ -1,30 +1,22 @@
-from dotenv import load_dotenv
 import os
-
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-load_dotenv()
+from selenium.webdriver.chrome.options import Options
 
-def loadWebDriver_chrome():
-    driver = webdriver.Remote(
-        command_executor=os.environ.get('CHROME'),
-        desired_capabilities=DesiredCapabilities.CHROME,
-    )
-    driver.implicitly_wait(10)
-    return driver
+filepath = os.path.dirname(__file__)
 
-def loadWebDriver_firefox():
-    driver = webdriver.Remote(
-        command_executor=os.environ.get('FIREFOX'),
-        desired_capabilities=DesiredCapabilities.FIREFOX,
-    )
-    driver.implicitly_wait(10)
-    return driver
+def options():
+    chrome_options = Options()
+    chrome_options.add_experimental_option('prefs',  {
+        "download.default_directory": f'{filepath}/venta/pdf_file',
+        "download.prompt_for_download": False,
+        "download.directory_upgrade": True,
+        "plugins.always_open_pdf_externally": True
+        })
 
-def loadWebDriver_opera():
-    driver = webdriver.Remote(
-        command_executor=os.environ.get('OPERA'),
-        desired_capabilities=DesiredCapabilities.OPERA,
-    )
+    return chrome_options
+
+def wd():
+    chrome_driver = f'{filepath}/chromedriver'
+    driver = webdriver.Chrome(options=options(), executable_path=chrome_driver)
     driver.implicitly_wait(10)
     return driver
