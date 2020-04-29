@@ -15,7 +15,7 @@ class Test(unittest.TestCase):
 
     def tearDown(self): self.driver.quit()
 
-    def test_apkathon2019_homepage(self):
+    def test_buy_on_venta(self):
         plan(self.driver, '//h2[contains(@class,"text-center")and(text()="BASIC")]/../..//button')
         get_quote_now(self.driver)
         unit(self.driver, '(//*[@class="payment-option-flip"])[1]//button')
